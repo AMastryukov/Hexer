@@ -41,14 +41,15 @@ public class SpawnerController : MonoBehaviour
 		{
 			nextSpawner = Random.Range (1, 13);
 			nextOperand = Random.Range (0, 15);
+			nextOperation = Random.Range (18, 22);
 
 			// if the operand is 0, then avoid division, additon and subtraction
 			if (nextOperand == 0) 
 			{
-				do 
+				while (nextOperation == 19 || nextOperation == 20 || nextOperation == 22)
 				{
-					nextOperation = Random.Range (18, 21);
-				} while (nextOperation == 19 || nextOperation == 20 || nextOperation == 22);
+					nextOperation = Random.Range (18, 22);
+				}
 			}
 				
 			yield return new WaitForSeconds ((float) Random.Range(6,10));
