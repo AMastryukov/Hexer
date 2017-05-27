@@ -5,7 +5,8 @@ using UnityEngine;
 public class PanelNumber : MonoBehaviour 
 {
 	private Sprite[] symbolSprites;
-	private int assignedNumber;
+	public int assignedNumber;
+	public int panelIndex;
 
 	void Awake()
 	{
