@@ -71,6 +71,7 @@ public class Operation : MonoBehaviour
 	// handle a given operation on a given number in the numberPanel
 	void performOperation(int givenOperator, int givenOperand, int panelNumberIndex)
 	{
+		Debug.Log ("Operator: " + givenOperator + ", Operand: " + givenOperand + " panel index: " + panelNumberIndex);
 		GameObject numberPanel = GameObject.FindGameObjectWithTag ("NumberPanel");
 		GameObject currentPanelNumber = numberPanel.GetComponent<NumberPanelManager>().getPanelNumbers()[panelNumberIndex].gameObject;
 
@@ -78,29 +79,41 @@ public class Operation : MonoBehaviour
 
 		// handle addition
 		if (givenOperator == 19) {
-			newTotal += operandNumber;
+			newTotal += givenOperand;
 		}
 
 		// handle subtraction
 		if (givenOperator == 20) {
-			newTotal -= operandNumber;
+			newTotal -= givenOperand;
+
+			// if it goes into the negatives, reset it back to 0
+			if (newTotal < 0) {
+				newTotal = 0;
+			}
 		}
 
 		// handle multiplication
 		if (givenOperator == 18) {
-			newTotal = newTotal * operandNumber;
+			newTotal = newTotal * givenOperand;
 		}
 
 		// handle division
 		if (givenOperator == 22) {
-			newTotal = newTotal / operandNumber;
+			newTotal = newTotal / givenOperand;
 		}
 
 		// handle assignment
 		if (givenOperator == 21) {
-			newTotal = operandNumber;
+			newTotal = givenOperand;
 		}
 			
-		Debug.Log (newTotal);
+		currentPanelNumber.GetComponent<SpriteRenderer> ().sprite = symbolSprites [newTotal % 16];
+		currentPanelNumber.GetComponent<PanelNumber> ().assignedNumber = newTotal % 16;
+
+		newTotal = newTotal / 16;
+
+		if (newTotal != 0 && panelNumberIndex != 0) {
+			performOperation (19, newTotal, panelNumberIndex - 1);
+		}
 	}
 }
