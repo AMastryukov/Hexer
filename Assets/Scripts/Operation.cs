@@ -68,6 +68,12 @@ public class Operation : MonoBehaviour
 		}
 	}
 
+	void OnMouseOver() {
+		if (Input.GetMouseButtonDown(0)) {
+			Destroy (gameObject);
+		}
+	}
+
 	// handle a given operation on a given number in the numberPanel
 	void performOperation(int givenOperator, int givenOperand, int panelNumberIndex)
 	{

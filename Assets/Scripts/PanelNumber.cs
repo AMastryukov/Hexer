@@ -17,6 +17,15 @@ public class PanelNumber : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		UpdateSprite ();
+	}
+
+	public void SetAssignedNumber(int number) {
+		assignedNumber = number;
+		UpdateSprite ();
+	}
+
+	public void UpdateSprite() {
 		this.gameObject.GetComponent<SpriteRenderer>().sprite = symbolSprites[assignedNumber];
 	}
 	

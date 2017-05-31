@@ -22,7 +22,6 @@ public class NumberPanelManager : MonoBehaviour {
 		return panelNumbers;
 	}
 
-
 	// Use this for initialization
 	void Start () {
 		for (int i = 0; i < transform.childCount; i++) {
