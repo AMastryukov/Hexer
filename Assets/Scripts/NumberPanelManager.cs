@@ -11,8 +11,7 @@ public class NumberPanelManager : MonoBehaviour {
 		// get all numbers on the panel
 		panelNumbers = new Transform[transform.childCount];
 
-		for (int i = 0; i < transform.childCount; i++) 
-		{
+		for (int i = 0; i < transform.childCount; i++) {
 			panelNumbers[i] = transform.GetChild (i);
 		}
 	}
