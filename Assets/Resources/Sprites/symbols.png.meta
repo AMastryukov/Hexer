@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 10343fee7af8c7f468f7b3123c591501
-timeCreated: 1495455177
+timeCreated: 1496668915
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,6 +27,11 @@ TextureImporter:
     21300040: symbols_20
     21300042: symbols_21
     21300044: symbols_22
+    21300046: symbols_23
+    21300048: symbols_24
+    21300050: symbols_25
+    21300052: symbols_26
+    21300054: symbols_27
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -384,6 +389,71 @@ TextureImporter:
         serializedVersion: 2
         x: 192
         y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: symbols_23
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: symbols_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: symbols_25
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: symbols_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: symbols_27
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
         width: 32
         height: 32
       alignment: 0

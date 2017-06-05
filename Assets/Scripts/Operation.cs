@@ -22,7 +22,7 @@ public class Operation : MonoBehaviour
 		operandObject = this.transform.GetChild (1).gameObject;
 
 		// default next-step delay is 1.0 seconds
-		stepDelaySeconds = 0.5f;
+		stepDelaySeconds = 0.015f;
 	}
 
 	// Use this for initialization
@@ -64,7 +64,7 @@ public class Operation : MonoBehaviour
 		while (true) 
 		{
 			yield return new WaitForSeconds (stepDelaySeconds);
-			transform.position = new Vector3 (transform.position.x, transform.position.y - 0.5f, transform.position.z);
+			transform.position = new Vector3 (transform.position.x, transform.position.y - 0.02f, transform.position.z);
 		}
 	}
 
@@ -77,7 +77,6 @@ public class Operation : MonoBehaviour
 	// handle a given operation on a given number in the numberPanel
 	void performOperation(int givenOperator, int givenOperand, int panelNumberIndex)
 	{
-		Debug.Log ("Operator: " + givenOperator + ", Operand: " + givenOperand + " panel index: " + panelNumberIndex);
 		GameObject numberPanel = GameObject.FindGameObjectWithTag ("NumberPanel");
 		GameObject currentPanelNumber = numberPanel.GetComponent<NumberPanelManager>().getPanelNumbers()[panelNumberIndex].gameObject;
 
