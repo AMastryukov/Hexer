@@ -60,7 +60,7 @@ public class CompleteLevel : MonoBehaviour {
 		// drop panel numbers
 		panelNumbers = GameObject.FindGameObjectsWithTag ("PanelNumber");
 		for (int i = 0; i < panelNumbers.Length; i++) {
-			panelNumbers [i].gameObject.GetComponent<Rigidbody2D> ().gravityScale = Random.Range (0.5f, 2.0f);
+			panelNumbers [i].gameObject.GetComponent<Rigidbody2D> ().gravityScale = Random.Range (1.0f, 2.0f);
 			panelNumbers [i].gameObject.GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Dynamic;
 
 			Destroy (panelNumbers [i].gameObject, 4);
@@ -69,7 +69,7 @@ public class CompleteLevel : MonoBehaviour {
 		// drop matcher numbers
 		matcherNumbers = GameObject.FindGameObjectsWithTag ("MatcherNumber");
 		for (int i = 0; i < matcherNumbers.Length; i++) {
-			matcherNumbers [i].gameObject.GetComponent<Rigidbody2D> ().gravityScale = Random.Range (0.5f, 2.0f);
+			matcherNumbers [i].gameObject.GetComponent<Rigidbody2D> ().gravityScale = Random.Range (1.0f, 2.0f);
 			matcherNumbers [i].gameObject.GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Dynamic;
 
 			Destroy (matcherNumbers [i].gameObject, 4);
@@ -78,7 +78,7 @@ public class CompleteLevel : MonoBehaviour {
 		// drop operations
 		operations = GameObject.FindGameObjectsWithTag ("Operation");
 		for (int i = 0; i < operations.Length; i++) {
-			operations [i].gameObject.GetComponent<Rigidbody2D> ().gravityScale = Random.Range (0.5f, 2.0f);
+			operations [i].gameObject.GetComponent<Rigidbody2D> ().gravityScale = Random.Range (1.0f, 2.0f);
 			operations [i].gameObject.GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Dynamic;
 
 			Destroy (operations [i].gameObject, 4);
@@ -88,7 +88,7 @@ public class CompleteLevel : MonoBehaviour {
 		arrows = GameObject.FindGameObjectsWithTag ("Arrow");
 		Debug.Log (arrows.Length);
 		for (int i = 0; i < operations.Length; i++) {
-			arrows [i].gameObject.GetComponent<Rigidbody2D> ().gravityScale = Random.Range (0.5f, 2.0f);
+			arrows [i].gameObject.GetComponent<Rigidbody2D> ().gravityScale = Random.Range (1.0f, 2.0f);
 			arrows [i].gameObject.GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Dynamic;
 
 			Destroy (arrows [i].gameObject, 4);

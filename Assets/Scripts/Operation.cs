@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Operation : MonoBehaviour 
 {
+	public AudioSource operationSound;
+	public AudioSource operationDeleteSound;
+
 	private int operatorSymbol;
 	private int operandNumber;
 
@@ -41,6 +44,7 @@ public class Operation : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag ("PanelNumber")) 
 		{
+			AudioSource.PlayClipAtPoint (operationSound.clip, new Vector3(0,0,0));
 			performOperation (operatorSymbol, operandNumber, other.gameObject.GetComponent<PanelNumber> ().panelIndex);
 			Destroy (gameObject);
 		}
@@ -70,6 +74,7 @@ public class Operation : MonoBehaviour
 
 	void OnMouseOver() {
 		if (Input.GetMouseButtonDown(0)) {
+			AudioSource.PlayClipAtPoint (operationDeleteSound.clip, new Vector3(0,0,0));
 			Destroy (gameObject);
 		}
 	}

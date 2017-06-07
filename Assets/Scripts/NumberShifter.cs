@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class NumberShifter : MonoBehaviour {
 
+	public AudioSource sound;
+
 	GameObject numberPanel;
 	int tempNumber;
 	int lastPanelIndex;
+
+	void Awake() {
+		
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -24,8 +30,11 @@ public class NumberShifter : MonoBehaviour {
 				numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [i].GetComponent<PanelNumber> ().SetAssignedNumber(
 					numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [i+1].GetComponent<PanelNumber> ().assignedNumber);
 			}
-
+				
 			numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [lastPanelIndex].GetComponent<PanelNumber> ().SetAssignedNumber(tempNumber);
+
+			// play sound
+			sound.Play();
 		}
 
 		if (Input.GetKeyDown (KeyCode.RightArrow)) {
@@ -38,6 +47,9 @@ public class NumberShifter : MonoBehaviour {
 			}
 
 			numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [0].GetComponent<PanelNumber> ().SetAssignedNumber(tempNumber);
+
+			// play sound
+			sound.Play();
 		}
 	}
 }

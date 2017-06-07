@@ -8,6 +8,8 @@ public class AccessGrantedNumber : MonoBehaviour {
 	private Sprite[] symbolSprites;
 	private int[] possibleLetters = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,23,24,25,26,27};
 
+	public AudioSource finalNumberSound;
+
 	void Awake()
 	{
 		symbolSprites = Resources.LoadAll<Sprite>("Sprites/symbols");
@@ -33,6 +35,8 @@ public class AccessGrantedNumber : MonoBehaviour {
 
 		//assign the final letter
 		gameObject.GetComponent<SpriteRenderer> ().sprite = symbolSprites [letter];
+
+		finalNumberSound.Play ();
 	}
 	
 	// Update is called once per frame
