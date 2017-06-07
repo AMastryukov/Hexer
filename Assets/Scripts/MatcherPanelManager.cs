@@ -53,7 +53,7 @@ public class MatcherPanelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SetDifficulty (1);
+		SetDifficulty (LevelDifficulty.difficulty);
 	}
 	
 	// Update is called once per frame
@@ -65,7 +65,7 @@ public class MatcherPanelManager : MonoBehaviour {
 				matcherNumbers [4].GetComponent<PanelNumber>().assignedNumber == numberPanelManager.GetComponent<NumberPanelManager>().getPanelNumbers()[10].GetComponent<PanelNumber>().assignedNumber &&
 				matcherNumbers [0].GetComponent<PanelNumber>().assignedNumber == numberPanelManager.GetComponent<NumberPanelManager>().getPanelNumbers()[6].GetComponent<PanelNumber>().assignedNumber &&
 				matcherNumbers [5].GetComponent<PanelNumber>().assignedNumber == numberPanelManager.GetComponent<NumberPanelManager>().getPanelNumbers()[11].GetComponent<PanelNumber>().assignedNumber) {
-
+				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
 		}
 		else if (difficulty == 2) {
@@ -73,7 +73,7 @@ public class MatcherPanelManager : MonoBehaviour {
 				matcherNumbers [3].GetComponent<PanelNumber>().assignedNumber == numberPanelManager.GetComponent<NumberPanelManager>().getPanelNumbers()[9].GetComponent<PanelNumber>().assignedNumber &&
 				matcherNumbers [1].GetComponent<PanelNumber>().assignedNumber == numberPanelManager.GetComponent<NumberPanelManager>().getPanelNumbers()[7].GetComponent<PanelNumber>().assignedNumber &&
 				matcherNumbers [4].GetComponent<PanelNumber>().assignedNumber == numberPanelManager.GetComponent<NumberPanelManager>().getPanelNumbers()[10].GetComponent<PanelNumber>().assignedNumber) {
-
+				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
 		}
 		else if (difficulty == 1) {

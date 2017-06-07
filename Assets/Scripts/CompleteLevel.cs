@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CompleteLevel : MonoBehaviour {
 
@@ -21,6 +22,8 @@ public class CompleteLevel : MonoBehaviour {
 		DisableScripts ();
 		DropObjectsDown ();
 		DisplayAccessGrantedText ();
+
+		StartCoroutine (GoToMainMenu());
 	}
 
 	void DisableScripts() {
@@ -99,6 +102,14 @@ public class CompleteLevel : MonoBehaviour {
 			accessGrantedText [i].GetComponent<AccessGrantedNumber> ().Animate (Random.Range(20,40));
 			accessGrantedText [i].GetComponent<SpriteRenderer> ().enabled = true;
 		}
+	}
+
+	IEnumerator GoToMainMenu()
+	{
+		// wait 5 seconds and change level
+		yield return new WaitForSeconds (4);
+
+		SceneManager.LoadScene ("MainMenuScene");
 	}
 
 	// Update is called once per frame
