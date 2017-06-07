@@ -22,6 +22,7 @@ public class CompleteLevel : MonoBehaviour {
 		DisableScripts ();
 		DropObjectsDown ();
 		DisplayAccessGrantedText ();
+		StopMusic ();
 
 		StartCoroutine (GoToMainMenu());
 	}
@@ -102,6 +103,11 @@ public class CompleteLevel : MonoBehaviour {
 			accessGrantedText [i].GetComponent<AccessGrantedNumber> ().Animate (Random.Range(20,40));
 			accessGrantedText [i].GetComponent<SpriteRenderer> ().enabled = true;
 		}
+	}
+
+	void StopMusic() {
+		GameObject soundTrack = GameObject.FindGameObjectWithTag ("SoundTrack");
+		soundTrack.GetComponent<AudioSource> ().Stop ();
 	}
 
 	IEnumerator GoToMainMenu()

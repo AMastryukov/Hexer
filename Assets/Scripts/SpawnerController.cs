@@ -79,7 +79,7 @@ public class SpawnerController : MonoBehaviour
 				}
 			}
 				
-			yield return new WaitForSeconds ((float) Random.Range(0.5f,4.0f));
+			yield return new WaitForSeconds ((float) Random.Range(1,4));
 			spawners [nextSpawner].GetComponent<Spawner> ().spawnOperation (nextOperation, nextOperand);
 		}
 	}
