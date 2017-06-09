@@ -22,7 +22,6 @@ public class CompleteLevel : MonoBehaviour {
 		DisableScripts ();
 		DropObjectsDown ();
 		DisplayAccessGrantedText ();
-		StopMusic ();
 
 		StartCoroutine (GoToMainMenu());
 	}
@@ -87,8 +86,7 @@ public class CompleteLevel : MonoBehaviour {
 
 		// drop arrows
 		arrows = GameObject.FindGameObjectsWithTag ("Arrow");
-		Debug.Log (arrows.Length);
-		for (int i = 0; i < operations.Length; i++) {
+		for (int i = 0; i < arrows.Length; i++) {
 			arrows [i].gameObject.GetComponent<Rigidbody2D> ().gravityScale = Random.Range (1.0f, 2.0f);
 			arrows [i].gameObject.GetComponent<Rigidbody2D> ().bodyType = RigidbodyType2D.Dynamic;
 
@@ -100,7 +98,7 @@ public class CompleteLevel : MonoBehaviour {
 		GameObject[] accessGrantedText = GameObject.FindGameObjectsWithTag ("AccessGrantedLetter");
 
 		for (int i = 0; i < accessGrantedText.Length; i++) {
-			accessGrantedText [i].GetComponent<AccessGrantedNumber> ().Animate (Random.Range(20,40));
+			accessGrantedText [i].GetComponent<AccessGrantedNumber> ().Animate (Random.Range(10,30));
 			accessGrantedText [i].GetComponent<SpriteRenderer> ().enabled = true;
 		}
 	}
@@ -115,6 +113,7 @@ public class CompleteLevel : MonoBehaviour {
 		// wait 5 seconds and change level
 		yield return new WaitForSeconds (4);
 
+		StopMusic ();
 		SceneManager.LoadScene ("MainMenuScene");
 	}
 

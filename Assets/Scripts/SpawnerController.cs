@@ -10,6 +10,8 @@ public class SpawnerController : MonoBehaviour
 	private int nextOperation;
 	private int nextOperand;
 
+	public float spawnFreqFactor;
+
 	void Awake()
 	{
 		// get all spawners under the spawner controller
@@ -45,7 +47,7 @@ public class SpawnerController : MonoBehaviour
 			// generate number
 			int numberGenChance = Random.Range(0,100);
 
-			if (numberGenChance < 70) {
+			if (numberGenChance < 75) {
 				nextOperand = Random.Range (0, 8);
 			} else if (numberGenChance < 90) {
 				nextOperand = Random.Range (8, 12);
@@ -57,8 +59,12 @@ public class SpawnerController : MonoBehaviour
 			int operationGenChance = Random.Range(0,100);
 			int[] multAndDivIndeces = {18,22};
 
-			if (operationGenChance < 75) {
-				nextOperation = Random.Range (19, 21);
+			if (operationGenChance < 80) {
+				if (operationGenChance < 20) {
+					nextOperation = 20;
+				} else {
+					nextOperation = 19;
+				}
 			} else if (operationGenChance < 90) {
 				nextOperation = multAndDivIndeces [Random.Range (0, 2)];
 			} else {
@@ -78,8 +84,27 @@ public class SpawnerController : MonoBehaviour
 					nextOperation = Random.Range (18, 23);
 				}
 			}
+
+			// determine spawn frequency factor based on sountrack BPM
+			switch (LevelDifficulty.speed) {
+			case 1:
+				spawnFreqFactor = 0.54545454545454f;
+				break;
+			case 2:
+				spawnFreqFactor = 0.5f;
+				break;
+			case 3:
+				spawnFreqFactor = 0.46153846f;
+				break;
+			case 4:
+				spawnFreqFactor = 0.42857142857f;
+				break;
+			default:
+				spawnFreqFactor = 0.5f;
+				break;
+			}
 				
-			yield return new WaitForSeconds ((float) Random.Range(1,4));
+			yield return new WaitForSeconds ((float) (Random.Range(6,9) - LevelDifficulty.speed) * spawnFreqFactor);
 			spawners [nextSpawner].GetComponent<Spawner> ().spawnOperation (nextOperation, nextOperand);
 		}
 	}

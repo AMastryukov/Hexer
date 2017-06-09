@@ -24,8 +24,8 @@ public class Operation : MonoBehaviour
 		operatorObject = this.transform.GetChild (0).gameObject;
 		operandObject = this.transform.GetChild (1).gameObject;
 
-		// default next-step delay is 1.0 seconds
-		stepDelaySeconds = 0.015f;
+		// get the step delay (same as spawn frequency of operations)
+		stepDelaySeconds = GameObject.FindGameObjectWithTag("SpawnerController").GetComponent<SpawnerController>().spawnFreqFactor;
 	}
 
 	// Use this for initialization
@@ -68,7 +68,7 @@ public class Operation : MonoBehaviour
 		while (true) 
 		{
 			yield return new WaitForSeconds (stepDelaySeconds);
-			transform.position = new Vector3 (transform.position.x, transform.position.y - 0.02f, transform.position.z);
+			transform.position = new Vector3 (transform.position.x, transform.position.y - (0.5f + LevelDifficulty.speed * 0.1f), transform.position.z);
 		}
 	}
 
