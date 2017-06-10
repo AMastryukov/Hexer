@@ -24,10 +24,11 @@ public class LevelDifficulty : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 	}
 
 	public static void StartLevel() {
 		SceneManager.LoadScene ("GameScene");
 	}
+
 }

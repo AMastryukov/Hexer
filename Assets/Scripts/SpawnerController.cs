@@ -88,10 +88,10 @@ public class SpawnerController : MonoBehaviour
 			// determine spawn frequency factor based on sountrack BPM
 			switch (LevelDifficulty.speed) {
 			case 1:
-				spawnFreqFactor = 0.54545454545454f;
+				spawnFreqFactor = 0.5248f;
 				break;
 			case 2:
-				spawnFreqFactor = 0.5f;
+				spawnFreqFactor = 0.495f;
 				break;
 			case 3:
 				spawnFreqFactor = 0.46153846f;
@@ -99,12 +99,9 @@ public class SpawnerController : MonoBehaviour
 			case 4:
 				spawnFreqFactor = 0.42857142857f;
 				break;
-			default:
-				spawnFreqFactor = 0.5f;
-				break;
 			}
 				
-			yield return new WaitForSeconds ((float) (Random.Range(5,8) - LevelDifficulty.speed) * spawnFreqFactor);
+			yield return new WaitForSeconds ((float) (Random.Range(6,9) - LevelDifficulty.speed) * spawnFreqFactor);
 			spawners [nextSpawner].GetComponent<Spawner> ().spawnOperation (nextOperation, nextOperand);
 		}
 	}

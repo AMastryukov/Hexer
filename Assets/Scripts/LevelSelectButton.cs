@@ -19,6 +19,8 @@ public class LevelSelectButton : MonoBehaviour {
 			LevelDifficulty.difficulty = difficulty;
 			GameObject.Find ("DecalManager").GetComponent<DecalManager> ().UpdateLevelInfoText ();
 			gameObject.GetComponent<SpriteRenderer> ().color = new Color (0.4f,0.4f,0.4f);
+
+			LevelDifficulty.StartLevel ();
 		}
 	}
 

@@ -67,8 +67,8 @@ public class Operation : MonoBehaviour
 		// keep moving the operation down to the bottom
 		while (true) 
 		{
-			yield return new WaitForSeconds (stepDelaySeconds);
-			transform.position = new Vector3 (transform.position.x, transform.position.y - (0.35f + LevelDifficulty.speed * 0.1f), transform.position.z);
+			yield return new WaitForSeconds (stepDelaySeconds / 2);
+			transform.position = new Vector3 (transform.position.x, transform.position.y - (0.15f + LevelDifficulty.speed * 0.05f), transform.position.z);
 		}
 	}
 
