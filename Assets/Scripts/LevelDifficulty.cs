@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class LevelDifficulty : MonoBehaviour {
 
 	public static int difficulty = 1;
-	public static int speed = -1;
+	public static int speed = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -17,14 +17,17 @@ public class LevelDifficulty : MonoBehaviour {
 			GameObject.FindGameObjectWithTag ("SpeedSlider").GetComponent<Slider> ().value = (float)speed;
 		}
 	}
+
+	public void UpdateSpeedValue() {
+		speed = (int)GameObject.FindGameObjectWithTag ("SpeedSlider").GetComponent<Slider> ().value;
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	public static void StartLevel() {
-		speed = (int)GameObject.FindGameObjectWithTag ("SpeedSlider").GetComponent<Slider> ().value;
 		SceneManager.LoadScene ("GameScene");
 	}
 }

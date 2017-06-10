@@ -103,17 +103,10 @@ public class CompleteLevel : MonoBehaviour {
 		}
 	}
 
-	void StopMusic() {
-		GameObject soundTrack = GameObject.FindGameObjectWithTag ("SoundTrack");
-		soundTrack.GetComponent<AudioSource> ().Stop ();
-	}
-
 	IEnumerator GoToMainMenu()
 	{
 		// wait 5 seconds and change level
 		yield return new WaitForSeconds (4);
-
-		StopMusic ();
 		SceneManager.LoadScene ("MainMenuScene");
 	}
 

@@ -68,7 +68,7 @@ public class Operation : MonoBehaviour
 		while (true) 
 		{
 			yield return new WaitForSeconds (stepDelaySeconds);
-			transform.position = new Vector3 (transform.position.x, transform.position.y - (0.5f + LevelDifficulty.speed * 0.1f), transform.position.z);
+			transform.position = new Vector3 (transform.position.x, transform.position.y - (0.35f + LevelDifficulty.speed * 0.1f), transform.position.z);
 		}
 	}
 

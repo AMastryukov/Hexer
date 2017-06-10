@@ -42,7 +42,7 @@ public class SpawnerController : MonoBehaviour
 		while (true) 
 		{
 			// generate random spawn point
-			nextSpawner = Random.Range (1, 13);
+			nextSpawner = Random.Range (1, spawners.Length);
 
 			// generate number
 			int numberGenChance = Random.Range(0,100);
@@ -104,7 +104,7 @@ public class SpawnerController : MonoBehaviour
 				break;
 			}
 				
-			yield return new WaitForSeconds ((float) (Random.Range(6,9) - LevelDifficulty.speed) * spawnFreqFactor);
+			yield return new WaitForSeconds ((float) (Random.Range(5,8) - LevelDifficulty.speed) * spawnFreqFactor);
 			spawners [nextSpawner].GetComponent<Spawner> ().spawnOperation (nextOperation, nextOperand);
 		}
 	}

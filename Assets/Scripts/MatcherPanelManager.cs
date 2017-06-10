@@ -31,9 +31,11 @@ public class MatcherPanelManager : MonoBehaviour {
 			matcherNumbers [2].gameObject.SetActive (false);
 			matcherNumbers [3].gameObject.SetActive (true);
 			matcherNumbers [4].gameObject.SetActive (true);
-			matcherNumbers [5].gameObject.SetActive (false);
-			matcherNumbers [6].gameObject.SetActive (false);
+			matcherNumbers [5].gameObject.SetActive (true);
+			matcherNumbers [6].gameObject.SetActive (true);
 			matcherNumbers [7].gameObject.SetActive (false);
+			matcherNumbers [8].gameObject.SetActive (false);
+			matcherNumbers [9].gameObject.SetActive (false);
 		} else if (difficulty == 2) {
 			matcherNumbers [0].gameObject.SetActive (false);
 			matcherNumbers [1].gameObject.SetActive (false);
@@ -41,8 +43,10 @@ public class MatcherPanelManager : MonoBehaviour {
 			matcherNumbers [3].gameObject.SetActive (true);
 			matcherNumbers [4].gameObject.SetActive (true);
 			matcherNumbers [5].gameObject.SetActive (true);
-			matcherNumbers [6].gameObject.SetActive (false);
-			matcherNumbers [7].gameObject.SetActive (false);
+			matcherNumbers [6].gameObject.SetActive (true);
+			matcherNumbers [7].gameObject.SetActive (true);
+			matcherNumbers [8].gameObject.SetActive (false);
+			matcherNumbers [9].gameObject.SetActive (false);
 		} else if (difficulty == 3) {
 			matcherNumbers [0].gameObject.SetActive (false);
 			matcherNumbers [1].gameObject.SetActive (true);
@@ -51,7 +55,9 @@ public class MatcherPanelManager : MonoBehaviour {
 			matcherNumbers [4].gameObject.SetActive (true);
 			matcherNumbers [5].gameObject.SetActive (true);
 			matcherNumbers [6].gameObject.SetActive (true);
-			matcherNumbers [7].gameObject.SetActive (false);
+			matcherNumbers [7].gameObject.SetActive (true);
+			matcherNumbers [8].gameObject.SetActive (true);
+			matcherNumbers [9].gameObject.SetActive (false);
 		} else if (difficulty == 4) {
 			matcherNumbers [0].gameObject.SetActive (true);
 			matcherNumbers [1].gameObject.SetActive (true);
@@ -61,6 +67,8 @@ public class MatcherPanelManager : MonoBehaviour {
 			matcherNumbers [5].gameObject.SetActive (true);
 			matcherNumbers [6].gameObject.SetActive (true);
 			matcherNumbers [7].gameObject.SetActive (true);
+			matcherNumbers [8].gameObject.SetActive (true);
+			matcherNumbers [9].gameObject.SetActive (true);
 		}
 	}
 
@@ -76,25 +84,29 @@ public class MatcherPanelManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (difficulty == 4) {
-			if (IsMatching(0,5) && IsMatching(1,6) && IsMatching(2,7) && IsMatching(3,8) && IsMatching(4,9) && IsMatching(5,10) && IsMatching(6,11) && IsMatching(7,12)) {
+			if (IsMatching(0,10) && IsMatching(1,11) && IsMatching(2,12) && IsMatching(3,13) && IsMatching(4,14) && 
+				IsMatching(5,15) && IsMatching(6,16) && IsMatching(7,17) && IsMatching(7,18) && IsMatching(7,19)) {
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
 		}
 		else if (difficulty == 3) {
-			if (IsMatching(1,6) && IsMatching(2,7) && IsMatching(3,8) && IsMatching(4,9) && IsMatching(5,10) && IsMatching(6,11)) {
+			if (IsMatching(1,11) && IsMatching(2,12) && IsMatching(3,13) && IsMatching(4,14) && 
+				IsMatching(5,15) && IsMatching(6,16) && IsMatching(7,17) && IsMatching(7,18)) {
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
 		}
 		else if (difficulty == 2) {
-			if (IsMatching(2,7) && IsMatching(3,8) && IsMatching(4,9) && IsMatching(5,10)) {
+			if (IsMatching(2,12) && IsMatching(3,13) && IsMatching(4,14) && 
+				IsMatching(5,15) && IsMatching(6,16) && IsMatching(7,17)) {
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
 		}
 		else if (difficulty == 1) {
-			if (IsMatching(3,8) && IsMatching(4,9)) {
+			if (IsMatching(3,13) && IsMatching(4,14) && 
+				IsMatching(5,15) && IsMatching(6,16)) {
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
