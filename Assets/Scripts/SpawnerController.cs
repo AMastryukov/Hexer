@@ -44,45 +44,39 @@ public class SpawnerController : MonoBehaviour
 			// generate random spawn point
 			nextSpawner = Random.Range (1, spawners.Length);
 
-			// generate number
-			int numberGenChance = Random.Range(0,100);
+			// generate random number for operations & operands
+			int operationChance = Random.Range(0, 101);
+			int operandChance = Random.Range (0, 101);
 
-			if (numberGenChance < 75) {
-				nextOperand = Random.Range (0, 8);
-			} else if (numberGenChance < 90) {
-				nextOperand = Random.Range (8, 12);
-			} else {
-				nextOperand = Random.Range (12, 16);
-			}
+			// 50% chance to be + or -
+			if (operationChance < 50) {
+				nextOperation = Random.Range (19, 21);
 
-			// generate operation
-			int operationGenChance = Random.Range(0,100);
-			int[] multAndDivIndeces = {18,22};
-
-			if (operationGenChance < 80) {
-				if (operationGenChance < 20) {
-					nextOperation = 20;
+				if (operandChance < 80) {
+					nextOperand = Random.Range (1, 10);
 				} else {
-					nextOperation = 19;
+					nextOperand = Random.Range (10, 16);
 				}
-			} else if (operationGenChance < 90) {
-				nextOperation = multAndDivIndeces [Random.Range (0, 2)];
+
+			} else if (operationChance < 70) {
+				nextOperation = 18;
+
+				if (operandChance < 95) {
+					nextOperand = Random.Range (1, 6);
+				} else {
+					nextOperand = Random.Range (6, 16);
+				}
+			} else if (operationChance < 90) {
+				nextOperation = 22;
+
+				if (operandChance < 95) {
+					nextOperand = Random.Range (1, 6);
+				} else {
+					nextOperand = Random.Range (6, 16);
+				}
 			} else {
 				nextOperation = 21;
-			}
-
-			// if the operand is 0, then avoid division, additon and subtraction
-			if (nextOperand == 0) {
-				while (nextOperation == 19 || nextOperation == 20 || nextOperation == 22) {
-					nextOperation = Random.Range (18, 23);
-				}
-			}
-
-			// if the operand is 1, avoid multiplication and division
-			if (nextOperand == 1) {
-				while (nextOperation == 18 || nextOperation == 22) {
-					nextOperation = Random.Range (18, 23);
-				}
+				nextOperand = Random.Range (0, 16);
 			}
 
 			// determine spawn frequency factor based on sountrack BPM
