@@ -10,6 +10,9 @@ public class NumberShifter : MonoBehaviour {
 	int tempNumber;
 	int lastPanelIndex;
 
+	float leftKeyDelay;
+	float rightKeyDelay;
+
 	void Awake() {
 		
 	}
@@ -18,38 +21,65 @@ public class NumberShifter : MonoBehaviour {
 	void Start () {
 		numberPanel = GameObject.FindGameObjectWithTag ("NumberPanel");
 		lastPanelIndex = numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers ().Length - 1;
+
+		sound.volume = Soundtrack.volume;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			tempNumber = numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [0].gameObject.GetComponent<PanelNumber> ().assignedNumber;
+			// for determining hold delay
+			leftKeyDelay = Time.time;
+			ShiftNumbersLeft ();
+		}
 
-			// shift the numbers to the left and update the sprites
-			for (int i = 0; i < lastPanelIndex; i++) {
-				numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [i].GetComponent<PanelNumber> ().SetAssignedNumber(
-					numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [i+1].GetComponent<PanelNumber> ().assignedNumber);
+		if (Input.GetKey (KeyCode.LeftArrow)) {
+			if (Time.time - leftKeyDelay > 0.5f) {
+				ShiftNumbersLeft ();
 			}
-				
-			numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [lastPanelIndex].GetComponent<PanelNumber> ().SetAssignedNumber(tempNumber);
-
-			// play sound
-			sound.Play();
 		}
 
 		if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			tempNumber = numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [lastPanelIndex].gameObject.GetComponent<PanelNumber> ().assignedNumber;
-
-			// shift the numbers to the right and update the sprites
-			for (int i = lastPanelIndex; i > 0; i--) {
-				numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [i].GetComponent<PanelNumber> ().SetAssignedNumber(
-					numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [i - 1].GetComponent<PanelNumber> ().assignedNumber);
-			}
-
-			numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [0].GetComponent<PanelNumber> ().SetAssignedNumber(tempNumber);
-
-			// play sound
-			sound.Play();
+			// for determining hold delay
+			rightKeyDelay = Time.time;
+			ShiftNumbersRight ();
 		}
+
+		if (Input.GetKey (KeyCode.RightArrow)) {
+			if (Time.time - rightKeyDelay > 0.5f) {
+				ShiftNumbersRight ();
+			}
+		}
+	}
+
+
+	void ShiftNumbersLeft() {
+		tempNumber = numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [0].gameObject.GetComponent<PanelNumber> ().assignedNumber;
+
+		// shift the numbers to the left and update the sprites
+		for (int i = 0; i < lastPanelIndex; i++) {
+			numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [i].GetComponent<PanelNumber> ().SetAssignedNumber(
+				numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [i+1].GetComponent<PanelNumber> ().assignedNumber);
+		}
+
+		numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [lastPanelIndex].GetComponent<PanelNumber> ().SetAssignedNumber(tempNumber);
+
+		// play sound
+		sound.Play();
+	}
+
+	void ShiftNumbersRight() {
+		tempNumber = numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [lastPanelIndex].gameObject.GetComponent<PanelNumber> ().assignedNumber;
+
+		// shift the numbers to the right and update the sprites
+		for (int i = lastPanelIndex; i > 0; i--) {
+			numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [i].GetComponent<PanelNumber> ().SetAssignedNumber(
+				numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [i - 1].GetComponent<PanelNumber> ().assignedNumber);
+		}
+
+		numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [0].GetComponent<PanelNumber> ().SetAssignedNumber(tempNumber);
+
+		// play sound
+		sound.Play();
 	}
 }

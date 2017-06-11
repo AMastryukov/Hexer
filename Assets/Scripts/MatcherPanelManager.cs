@@ -19,6 +19,7 @@ public class MatcherPanelManager : MonoBehaviour {
 			matcherNumbers[i] = transform.GetChild (i);
 		}
 
+		solvedSound.volume = Soundtrack.volume;
 		numberPanelManager = GameObject.FindGameObjectWithTag ("NumberPanel");
 	}
 
@@ -86,6 +87,7 @@ public class MatcherPanelManager : MonoBehaviour {
 		if (difficulty == 4) {
 			if (IsMatching(0,10) && IsMatching(1,11) && IsMatching(2,12) && IsMatching(3,13) && IsMatching(4,14) && 
 				IsMatching(5,15) && IsMatching(6,16) && IsMatching(7,17) && IsMatching(7,18) && IsMatching(7,19)) {
+				GameObject.Find("SoundTrack").GetComponent<Soundtrack>().StopMusic ();
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
@@ -93,6 +95,7 @@ public class MatcherPanelManager : MonoBehaviour {
 		else if (difficulty == 3) {
 			if (IsMatching(1,11) && IsMatching(2,12) && IsMatching(3,13) && IsMatching(4,14) && 
 				IsMatching(5,15) && IsMatching(6,16) && IsMatching(7,17) && IsMatching(7,18)) {
+				GameObject.Find("SoundTrack").GetComponent<Soundtrack>().StopMusic ();
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
@@ -100,6 +103,7 @@ public class MatcherPanelManager : MonoBehaviour {
 		else if (difficulty == 2) {
 			if (IsMatching(2,12) && IsMatching(3,13) && IsMatching(4,14) && 
 				IsMatching(5,15) && IsMatching(6,16) && IsMatching(7,17)) {
+				GameObject.Find("SoundTrack").GetComponent<Soundtrack>().StopMusic ();
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
@@ -107,6 +111,7 @@ public class MatcherPanelManager : MonoBehaviour {
 		else if (difficulty == 1) {
 			if (IsMatching(3,13) && IsMatching(4,14) && 
 				IsMatching(5,15) && IsMatching(6,16)) {
+				GameObject.Find("SoundTrack").GetComponent<Soundtrack>().StopMusic ();
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}

@@ -13,6 +13,7 @@ public class AccessGrantedNumber : MonoBehaviour {
 	void Awake()
 	{
 		symbolSprites = Resources.LoadAll<Sprite>("Sprites/symbols");
+		finalNumberSound.volume = Soundtrack.volume;
 	}
 
 	// Use this for initialization

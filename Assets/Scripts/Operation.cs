@@ -24,6 +24,9 @@ public class Operation : MonoBehaviour
 		operatorObject = this.transform.GetChild (0).gameObject;
 		operandObject = this.transform.GetChild (1).gameObject;
 
+		operationSound.volume = Soundtrack.volume;
+		operationDeleteSound.volume = Soundtrack.volume;
+
 		// get the step delay (same as spawn frequency of operations)
 		stepDelaySeconds = GameObject.FindGameObjectWithTag("SpawnerController").GetComponent<SpawnerController>().spawnFreqFactor;
 	}
