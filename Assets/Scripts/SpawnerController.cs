@@ -57,23 +57,28 @@ public class SpawnerController : MonoBehaviour
 				} else {
 					nextOperand = Random.Range (10, 16);
 				}
-
+			
+			// 20% chance to be x
 			} else if (operationChance < 70) {
 				nextOperation = 18;
 
 				if (operandChance < 95) {
-					nextOperand = Random.Range (1, 6);
+					nextOperand = Random.Range (2, 6);
 				} else {
 					nextOperand = Random.Range (6, 16);
 				}
+
+			// 20% chance to be /
 			} else if (operationChance < 90) {
 				nextOperation = 22;
 
 				if (operandChance < 95) {
-					nextOperand = Random.Range (1, 6);
+					nextOperand = Random.Range (2, 6);
 				} else {
 					nextOperand = Random.Range (6, 16);
 				}
+
+			// 10% chance to be =
 			} else {
 				nextOperation = 21;
 				nextOperand = Random.Range (0, 16);

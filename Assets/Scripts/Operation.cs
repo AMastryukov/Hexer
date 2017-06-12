@@ -77,8 +77,10 @@ public class Operation : MonoBehaviour
 
 	void OnMouseOver() {
 		if (Input.GetMouseButtonDown(0)) {
-			AudioSource.PlayClipAtPoint (operationDeleteSound.clip, new Vector3(0,0,0));
-			Destroy (gameObject);
+			if (StatisticsTracker.removeAvailableDeletePowerup ()) {
+				AudioSource.PlayClipAtPoint (operationDeleteSound.clip, new Vector3 (0, 0, 0));
+				Destroy (gameObject);
+			}
 		}
 	}
 

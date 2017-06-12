@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DecalManager : MonoBehaviour {
 
 	Text topText;
 	Text levelInfoText;
+	Text statText;
 
 	Sprite[] levelDecals;
 
 	// Use this for initialization
 	void Start () {
-		topText = GameObject.Find ("TopText").GetComponent<Text>();
+		topText = GameObject.Find ("TopText").GetComponent<Text> ();
 		levelInfoText = GameObject.Find ("LevelInfoText").GetComponent<Text> ();
+		statText = GameObject.Find ("Stats").GetComponent<Text> ();
 
-		StartCoroutine (UpdateMainMenuTopText());
+		StartCoroutine (UpdateMainMenuTopText ());
 		UpdateLevelInfoText ();
 	}
 
 	IEnumerator UpdateMainMenuTopText() {
 		while (true) {
 			topText.text = "";
-			topText.text += "Processes: " + Random.Range (1, 3) + " total, 1 active, " + Random.Range(300,330) + " threads\n";
+			topText.text += "Processes: " + Random.Range (1, 3) + " total, 1 active, " + Random.Range(300,330) + " threads\n\n";
 			topText.text += "CPU Usage: " + Mathf.Round(Random.Range (5.0f, 10.0f) * 100f) / 100f  + "% user, " + Mathf.Round(Random.Range (5.0f, 10.0f) * 100f) / 100f  + "% sys" + "\n";
 			topText.text += "MEM Usage: " + Mathf.Round(Random.Range (8.0f, 20.0f) * 100f) / 100f  + "%\n";
 			topText.text += "IP: " + Random.Range(0, 256) + "." + Random.Range(0, 256) + "." + Random.Range(0, 256) + "." + Random.Range(0, 256) + "\n";
@@ -69,9 +72,23 @@ public class DecalManager : MonoBehaviour {
 
 		levelInfoText.text += "]";
 	}
+
+	public void UpdateStatsText() {
+		statText.text = "";
+		statText.text += StatisticsTracker.getAvailableBits ();
+		statText.text += " available bits\n\n";
+		statText.text += StatisticsTracker.getMaxDeletePowerups ();
+		statText.text += " deleters (" + StatisticsTracker.getDeletePowerupCost() + " bits) [+]\n";
+		statText.text += StatisticsTracker.getAssignmentPowerups ();
+		statText.text += " injections (64 bits) [+]\n";
+		statText.text += StatisticsTracker.getSwapPowerups();
+		statText.text += " swappers (32 bits) [+]\n";
+		statText.text += StatisticsTracker.getRandomizePowerups ();
+		statText.text += " scramblers (16 bits) [+]\n";
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		UpdateStatsText ();
 	}
 }

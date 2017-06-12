@@ -13,7 +13,8 @@ public class LevelDifficulty : MonoBehaviour {
 	void Start () {
 		DontDestroyOnLoad (transform.gameObject);
 
-		if (speed > 0 && GameObject.FindGameObjectWithTag("SpeedSlider")) {
+		// handle speed slider value updating
+		if (speed > 0 && GameObject.FindGameObjectWithTag ("SpeedSlider")) {
 			GameObject.FindGameObjectWithTag ("SpeedSlider").GetComponent<Slider> ().value = (float)speed;
 		}
 	}
@@ -28,6 +29,7 @@ public class LevelDifficulty : MonoBehaviour {
 	}
 
 	public static void StartLevel() {
+		StatisticsTracker.replenishDeletePowerups ();
 		SceneManager.LoadScene ("GameScene");
 	}
 
