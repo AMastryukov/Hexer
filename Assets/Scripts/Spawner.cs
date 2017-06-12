@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour 
 {
-	private Sprite[] symbolSprites;
 	public GameObject operation;
 
 	void Awake()
 	{
-		symbolSprites = Resources.LoadAll<Sprite>("Sprites/symbols");
+		
 	}
 
 	// Use this for initialization

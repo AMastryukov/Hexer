@@ -9,9 +9,17 @@ public class LevelDifficulty : MonoBehaviour {
 	public static int difficulty = 1;
 	public static int speed = 1;
 
+	private static LevelDifficulty instance;
+
 	// Use this for initialization
 	void Start () {
-		DontDestroyOnLoad (transform.gameObject);
+		if (instance == null) {
+			instance = this;
+			DontDestroyOnLoad (this);
+		} else if (instance != this) {
+			Destroy (this.gameObject);
+			return;
+		}
 
 		// handle speed slider value updating
 		if (speed > 0 && GameObject.FindGameObjectWithTag ("SpeedSlider")) {

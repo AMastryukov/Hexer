@@ -25,7 +25,7 @@ public class DecalManager : MonoBehaviour {
 	IEnumerator UpdateMainMenuTopText() {
 		while (true) {
 			topText.text = "";
-			topText.text += "Processes: " + Random.Range (1, 3) + " total, 1 active, " + Random.Range(300,330) + " threads\n\n";
+			topText.text += "Processes: " + Random.Range (1, 3) + " total, 1 active, " + Random.Range(300,330) + " threads\n";
 			topText.text += "CPU Usage: " + Mathf.Round(Random.Range (5.0f, 10.0f) * 100f) / 100f  + "% user, " + Mathf.Round(Random.Range (5.0f, 10.0f) * 100f) / 100f  + "% sys" + "\n";
 			topText.text += "MEM Usage: " + Mathf.Round(Random.Range (8.0f, 20.0f) * 100f) / 100f  + "%\n";
 			topText.text += "IP: " + Random.Range(0, 256) + "." + Random.Range(0, 256) + "." + Random.Range(0, 256) + "." + Random.Range(0, 256) + "\n";
@@ -76,11 +76,11 @@ public class DecalManager : MonoBehaviour {
 	public void UpdateStatsText() {
 		statText.text = "";
 		statText.text += StatisticsTracker.getAvailableBits ();
-		statText.text += " available bits\n\n";
+		statText.text += " bits available\n\n";
 		statText.text += StatisticsTracker.getMaxDeletePowerups ();
 		statText.text += " deleters (" + StatisticsTracker.getDeletePowerupCost() + " bits) [+]\n";
 		statText.text += StatisticsTracker.getAssignmentPowerups ();
-		statText.text += " injections (64 bits) [+]\n";
+		statText.text += " duplicators (64 bits) [+]\n";
 		statText.text += StatisticsTracker.getSwapPowerups();
 		statText.text += " swappers (32 bits) [+]\n";
 		statText.text += StatisticsTracker.getRandomizePowerups ();

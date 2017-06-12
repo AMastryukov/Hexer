@@ -16,17 +16,30 @@ public class StatisticsTracker : MonoBehaviour {
 	static int maxDeletePowerups;
 	static int availableDeletePowerups;
 
+	// per-level and overall stats
+	public static int[] levelStats = new int[9] {0,0,0,0,0,0,0,0,0};
+	public static int[] overallStats = new int[9] {0,0,0,0,0,0,0,0,0};
+
+	private static StatisticsTracker instance = null;
+
 	// Use this for initialization
 	void Start () {
-		DontDestroyOnLoad (transform.gameObject);
+		if (instance == null) {
+			instance = this;
+			DontDestroyOnLoad (this);
 
-		availableBits = 64;
+			// set default values
+			availableBits = 256;
 
-		assignmentPowerups = 0;
-		swapPowerups = 0;
-		randomizePowerups = 0;
-		maxDeletePowerups = 0;
-		availableDeletePowerups = 0;
+			assignmentPowerups = 0;
+			swapPowerups = 0;
+			randomizePowerups = 0;
+			maxDeletePowerups = 0;
+			availableDeletePowerups = 0;
+		} else if (instance != this) {
+			Destroy (this.gameObject);
+			return;
+		}
 	}
 
 	// GETTERS
@@ -128,6 +141,13 @@ public class StatisticsTracker : MonoBehaviour {
 	// OTHER
 	public static void replenishDeletePowerups() {
 		availableDeletePowerups = maxDeletePowerups;
+	}
+
+	public static void updateOverallStats() {
+		for (int i = 0; i < levelStats.Length; i++) {
+			overallStats [i] += levelStats [i];
+			levelStats [i] = 0;
+		}
 	}
 
 	// Update is called once per frame

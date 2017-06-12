@@ -25,6 +25,14 @@ public class PanelNumber : MonoBehaviour
 		UpdateSprite ();
 	}
 
+	void OnMouseOver() {
+		if (Input.GetMouseButtonDown(0)) {
+			if (gameObject.tag == "PanelNumber") {
+				GameObject.Find("PowerupManager").GetComponent<PowerupManager>().createDuplicateAssignment (assignedNumber);
+			}
+		}
+	}
+
 	public void UpdateSprite() {
 		this.gameObject.GetComponent<SpriteRenderer>().sprite = symbolSprites[assignedNumber];
 	}

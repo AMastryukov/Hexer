@@ -16,16 +16,29 @@ public class Soundtrack : MonoBehaviour {
 
 	public static float volume = 0.5f;
 
+	private static Soundtrack instance;
+
 	// Use this for initialization
 	void Start () {
-		DontDestroyOnLoad (transform.gameObject);
-		SceneManager.sceneLoaded += SceneLoaded;
-		volumeSlider = GameObject.Find ("VolumeSlider").GetComponent<Slider> ();
+		if (instance == null) {
+			instance = this;
+			DontDestroyOnLoad (this);
+
+			volumeSlider = GameObject.Find ("VolumeSlider").GetComponent<Slider> ();
+			SceneManager.sceneLoaded += SceneLoaded;
+		} else if (instance != this) {
+			Destroy (this.gameObject);
+			return;
+		}
 	}
 
 	void SceneLoaded (Scene scene, LoadSceneMode mode)
 	{
 		StopMusic ();
+
+		volumeSlider = GameObject.Find ("VolumeSlider").GetComponent<Slider> ();
+		volumeSlider.onValueChanged.AddListener (delegate {UpdateVolume ();});
+		volumeSlider.value = volume;
 
 		if (scene.name == "GameScene") {
 			mainMenu.Stop ();
@@ -53,7 +66,6 @@ public class Soundtrack : MonoBehaviour {
 			fast.Stop ();
 			crazy.Stop ();
 
-			volumeSlider.value = volume;
 			mainMenu.Play ();
 		}
 	}
@@ -70,6 +82,7 @@ public class Soundtrack : MonoBehaviour {
 	}
 
 	public void UpdateVolume() {
+		volumeSlider = GameObject.Find ("VolumeSlider").GetComponent<Slider> ();
 		volume = volumeSlider.value;
 
 		slow.volume = volume;

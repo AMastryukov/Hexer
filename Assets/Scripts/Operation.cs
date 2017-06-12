@@ -5,7 +5,6 @@ using UnityEngine;
 public class Operation : MonoBehaviour 
 {
 	public AudioSource operationSound;
-	public AudioSource operationDeleteSound;
 
 	private int operatorSymbol;
 	private int operandNumber;
@@ -25,7 +24,6 @@ public class Operation : MonoBehaviour
 		operandObject = this.transform.GetChild (1).gameObject;
 
 		operationSound.volume = Soundtrack.volume;
-		operationDeleteSound.volume = Soundtrack.volume;
 
 		// get the step delay (same as spawn frequency of operations)
 		stepDelaySeconds = GameObject.FindGameObjectWithTag("SpawnerController").GetComponent<SpawnerController>().spawnFreqFactor;
@@ -71,14 +69,13 @@ public class Operation : MonoBehaviour
 		while (true) 
 		{
 			yield return new WaitForSeconds (stepDelaySeconds / 2);
-			transform.position = new Vector3 (transform.position.x, transform.position.y - (0.15f + LevelDifficulty.speed * 0.05f), transform.position.z);
+			transform.position = new Vector3 (transform.position.x, transform.position.y - (0.15f + LevelDifficulty.speed * 0.03f), transform.position.z);
 		}
 	}
 
 	void OnMouseOver() {
 		if (Input.GetMouseButtonDown(0)) {
-			if (StatisticsTracker.removeAvailableDeletePowerup ()) {
-				AudioSource.PlayClipAtPoint (operationDeleteSound.clip, new Vector3 (0, 0, 0));
+			if (GameObject.Find("PowerupManager").GetComponent<PowerupManager>().deleteOperation ()) {
 				Destroy (gameObject);
 			}
 		}
@@ -95,6 +92,8 @@ public class Operation : MonoBehaviour
 		// handle addition
 		if (givenOperator == 19) {
 			newTotal += givenOperand;
+
+			StatisticsTracker.levelStats [0]++;
 		}
 
 		// handle subtraction
@@ -105,21 +104,45 @@ public class Operation : MonoBehaviour
 			if (newTotal < 0) {
 				newTotal = 0;
 			}
+
+			StatisticsTracker.levelStats [1]++;
 		}
 
 		// handle multiplication
 		if (givenOperator == 18) {
 			newTotal = newTotal * givenOperand;
+
+			StatisticsTracker.levelStats [2]++;
 		}
 
 		// handle division
 		if (givenOperator == 22) {
 			newTotal = newTotal / givenOperand;
+
+			StatisticsTracker.levelStats [3]++;
 		}
 
 		// handle assignment
 		if (givenOperator == 21) {
 			newTotal = givenOperand;
+
+			// if operand is ?, randomize the number
+			if (givenOperand == 28) {
+				newTotal = Random.Range (0, 16);
+			} else {
+				StatisticsTracker.levelStats [4]++;
+			}
+		}
+			
+		// swap powerup
+		if (givenOperator == 16) {
+			int tempTotal = numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [panelNumberIndex].GetComponent<PanelNumber> ().assignedNumber;
+
+			// swap the previous and current numbers
+			newTotal = numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [panelNumberIndex - 1].GetComponent<PanelNumber> ().assignedNumber;
+			numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers () [panelNumberIndex - 1].GetComponent<PanelNumber> ().SetAssignedNumber(tempTotal);
+
+			StatisticsTracker.levelStats [7]++;
 		}
 			
 		currentPanelNumber.GetComponent<SpriteRenderer> ().sprite = symbolSprites [newTotal % 16];

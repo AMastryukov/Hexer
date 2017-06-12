@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnerController : MonoBehaviour
 {
-	private Transform[] spawners;
+	public Transform[] spawners;
 
 	private int nextSpawner;
 	private int nextOperation;
@@ -34,6 +34,11 @@ public class SpawnerController : MonoBehaviour
 	void Update ()
 	{
 
+	}
+
+	public void SetNextOperation(int operation, int operand) {
+		nextOperation = operation;
+		nextOperand = operand;
 	}
 
 	IEnumerator spawnOperations()
@@ -87,7 +92,7 @@ public class SpawnerController : MonoBehaviour
 			// determine spawn frequency factor based on sountrack BPM
 			switch (LevelDifficulty.speed) {
 			case 1:
-				spawnFreqFactor = 0.5248f;
+				spawnFreqFactor = 0.527f;
 				break;
 			case 2:
 				spawnFreqFactor = 0.495f;
@@ -100,7 +105,7 @@ public class SpawnerController : MonoBehaviour
 				break;
 			}
 				
-			yield return new WaitForSeconds ((float) (Random.Range(6,9) - LevelDifficulty.speed) * spawnFreqFactor);
+			yield return new WaitForSeconds ((float) (Random.Range(6,10) - LevelDifficulty.speed) * spawnFreqFactor);
 			spawners [nextSpawner].GetComponent<Spawner> ().spawnOperation (nextOperation, nextOperand);
 		}
 	}

@@ -19,7 +19,7 @@ public class PowerupBarText : MonoBehaviour {
 		powerupBarText.text += StatisticsTracker.getMaxDeletePowerups ();
 		powerupBarText.text += " deleters | ";
 		powerupBarText.text += StatisticsTracker.getAssignmentPowerups ();
-		powerupBarText.text += " injections | ";
+		powerupBarText.text += " duplicators | ";
 		powerupBarText.text += StatisticsTracker.getSwapPowerups();
 		powerupBarText.text += " swappers | ";
 		powerupBarText.text += StatisticsTracker.getRandomizePowerups ();
