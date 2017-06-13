@@ -14,7 +14,7 @@ public class Soundtrack : MonoBehaviour {
 
 	Slider volumeSlider;
 
-	public static float volume = 0.5f;
+	public static float volume;
 
 	private static Soundtrack instance;
 
@@ -24,7 +24,16 @@ public class Soundtrack : MonoBehaviour {
 			instance = this;
 			DontDestroyOnLoad (this);
 
+			// set the volume from the playerprefs
 			volumeSlider = GameObject.Find ("VolumeSlider").GetComponent<Slider> ();
+
+			if (PlayerPrefs.HasKey ("soundVolume")) {
+				volume = PlayerPrefs.GetFloat ("soundVolume");
+				volumeSlider.value = volume;
+			} else {
+				PlayerPrefs.SetFloat ("soundVolume", 0.5f);
+			}
+
 			SceneManager.sceneLoaded += SceneLoaded;
 		} else if (instance != this) {
 			Destroy (this.gameObject);
@@ -84,6 +93,7 @@ public class Soundtrack : MonoBehaviour {
 	public void UpdateVolume() {
 		volumeSlider = GameObject.Find ("VolumeSlider").GetComponent<Slider> ();
 		volume = volumeSlider.value;
+		PlayerPrefs.SetFloat ("soundVolume", volume);
 
 		slow.volume = volume;
 		moderate.volume = volume;

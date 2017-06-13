@@ -33,7 +33,9 @@ public class LevelDifficulty : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (SceneManager.GetActiveScene ().name == "MainMenuScene") {
+			UpdateSpeedValue ();
+		}
 	}
 
 	public static void StartLevel() {

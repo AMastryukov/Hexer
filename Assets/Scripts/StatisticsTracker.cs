@@ -28,14 +28,11 @@ public class StatisticsTracker : MonoBehaviour {
 			instance = this;
 			DontDestroyOnLoad (this);
 
-			// set default values
-			availableBits = 256;
+			// load data from file or set the data to default
+			if (!SaveLoadData.Load ()) {
+				setDefaultValues ();
+			}
 
-			assignmentPowerups = 0;
-			swapPowerups = 0;
-			randomizePowerups = 0;
-			maxDeletePowerups = 0;
-			availableDeletePowerups = 0;
 		} else if (instance != this) {
 			Destroy (this.gameObject);
 			return;
@@ -69,6 +66,47 @@ public class StatisticsTracker : MonoBehaviour {
 
 	public static int getAvailableDeletePowerups() {
 		return availableDeletePowerups;
+	}
+
+	// SETTERS
+	public static void setAvailableBits(int bits) {
+		availableBits = bits;
+	}
+
+	public static void setAssignmentPowerups(int powerups) {
+		assignmentPowerups = powerups;
+	}
+
+	public static void setSwapPowerups(int powerups) {
+		swapPowerups = powerups;
+	}
+
+	public static void setRandomizePowerups(int powerups) {
+		randomizePowerups = powerups;
+	}
+
+	public static void setMaxDeletePowerups(int powerups) {
+		maxDeletePowerups = powerups;
+	}
+
+	public static void setAvailableDeletePowerups(int powerups) {
+		availableDeletePowerups = powerups;
+	}
+
+	public static void setOverallStats(int[] stats) {
+		for (int i = 0; i < 9; i++) {
+			overallStats[i] = stats [i];
+		}
+	}
+
+	public static void setDefaultValues() {
+		availableBits = 1024;
+
+		assignmentPowerups = 0;
+		swapPowerups = 0;
+		randomizePowerups = 0;
+		maxDeletePowerups = 0;
+		availableDeletePowerups = 0;
 	}
 
 	// ADDERS
@@ -148,6 +186,9 @@ public class StatisticsTracker : MonoBehaviour {
 			overallStats [i] += levelStats [i];
 			levelStats [i] = 0;
 		}
+
+		// save the data to file
+		SaveLoadData.Save();
 	}
 
 	// Update is called once per frame

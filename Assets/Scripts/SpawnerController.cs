@@ -105,7 +105,7 @@ public class SpawnerController : MonoBehaviour
 				break;
 			}
 				
-			yield return new WaitForSeconds ((float) (Random.Range(6,10) - LevelDifficulty.speed) * spawnFreqFactor);
+			yield return new WaitForSeconds ((float) (Random.Range(7,10) - LevelDifficulty.speed) * spawnFreqFactor);
 			spawners [nextSpawner].GetComponent<Spawner> ().spawnOperation (nextOperation, nextOperand);
 		}
 	}
