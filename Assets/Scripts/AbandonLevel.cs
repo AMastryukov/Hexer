@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AbandonLevel : MonoBehaviour {
@@ -35,7 +36,7 @@ public class AbandonLevel : MonoBehaviour {
 
 			if ((Time.time - holdDelay > 1f) && overButton) {
 				GameObject.Find ("SoundTrack").GetComponent<Soundtrack> ().StopMusic ();
-				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
+				SceneManager.LoadScene ("MainMenuScene");
 
 				gameObject.GetComponent<Text> ().text = "GAME OVER";
 				gameObject.GetComponent<AbandonLevel> ().enabled = false;

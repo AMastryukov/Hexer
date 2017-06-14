@@ -72,12 +72,12 @@ public class StatisticsTracker : MonoBehaviour {
 	}
 
 	public static int getLevelUnlockCost(int level, int speed) {
-		int price = 64 * level * speed;
+		int price = 32 * level * speed;
 
 		for (int i = 0; i < level; i++) {
 			for (int j = 0; j < speed; j++) {
 				if (!levelUnlocks [i, j]) {
-					price += 128 * (i+1) * (j+1);
+					price += 32 * (i+1) * (j+1);
 				}
 			}
 		}
@@ -125,7 +125,7 @@ public class StatisticsTracker : MonoBehaviour {
 	}
 
 	public static void setDefaultValues() {
-		availableBits = 20000;
+		availableBits = 0;
 
 		assignmentPowerups = 0;
 		swapPowerups = 0;
