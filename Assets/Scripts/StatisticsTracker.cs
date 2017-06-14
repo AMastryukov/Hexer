@@ -20,6 +20,9 @@ public class StatisticsTracker : MonoBehaviour {
 	public static int[] levelStats = new int[9] {0,0,0,0,0,0,0,0,0};
 	public static int[] overallStats = new int[9] {0,0,0,0,0,0,0,0,0};
 
+	// game progress
+	public static bool[,] levelUnlocks = new bool[4,4];
+
 	private static StatisticsTracker instance = null;
 
 	// Use this for initialization
@@ -68,6 +71,20 @@ public class StatisticsTracker : MonoBehaviour {
 		return availableDeletePowerups;
 	}
 
+	public static int getLevelUnlockCost(int level, int speed) {
+		int price = 64 * level * speed;
+
+		for (int i = 0; i < level; i++) {
+			for (int j = 0; j < speed; j++) {
+				if (!levelUnlocks [i, j]) {
+					price += 128 * (i+1) * (j+1);
+				}
+			}
+		}
+
+		return price;
+	}
+
 	// SETTERS
 	public static void setAvailableBits(int bits) {
 		availableBits = bits;
@@ -99,14 +116,31 @@ public class StatisticsTracker : MonoBehaviour {
 		}
 	}
 
+	public static void setLevelUnlocks(bool[,] unlocks) {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				levelUnlocks[i,j] = unlocks [i,j];
+			}
+		}
+	}
+
 	public static void setDefaultValues() {
-		availableBits = 1024;
+		availableBits = 20000;
 
 		assignmentPowerups = 0;
 		swapPowerups = 0;
 		randomizePowerups = 0;
 		maxDeletePowerups = 0;
 		availableDeletePowerups = 0;
+
+		// default unlocks
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				levelUnlocks [i,j] = false;
+			}
+		}
+
+		levelUnlocks [0,0] = true;
 	}
 
 	// ADDERS

@@ -14,24 +14,24 @@ public class SaveGameButton : MonoBehaviour {
 	}
 
 	void OnMouseOver() {
-		gameObject.GetComponent<SpriteRenderer> ().color = new Color (0.9f,0.9f,0.9f);
-		gameObject.GetComponent<Transform> ().localScale = new Vector3 (0.73f,0.73f,0.73f);
-
 		if (Input.GetMouseButtonDown(0)) {
-			SaveLoadData.Save ();
-			StartCoroutine (DisplaySavedText ());
+
+			StartCoroutine (SaveGame ());
 		}
 	}
 
-	void OnMouseExit() {
-		gameObject.GetComponent<SpriteRenderer> ().color = new Color (1.0f,1.0f,1.0f);
-		gameObject.GetComponent<Transform> ().localScale = new Vector3 (0.75f,0.75f,0.75f);
-	}
+	IEnumerator SaveGame() {
+		SaveLoadData.Save ();
 
-	IEnumerator DisplaySavedText() {
 		savedLoadedText.text = "Game Saved";
-		yield return new WaitForSeconds (3);
+		gameObject.GetComponent<SpriteRenderer> ().enabled = false;
+		gameObject.GetComponent<BoxCollider2D> ().enabled = false;
+
+		yield return new WaitForSeconds (2);
+
 		savedLoadedText.text = "";
+		gameObject.GetComponent<SpriteRenderer> ().enabled = true;
+		gameObject.GetComponent<BoxCollider2D> ().enabled = true;
 	}
 	
 	// Update is called once per frame

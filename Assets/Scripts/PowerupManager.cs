@@ -14,6 +14,7 @@ public class PowerupManager : MonoBehaviour {
 	public void createDuplicateAssignment(int value) {
 		if (StatisticsTracker.removeAssignmentPowerup ()) {
 			GameObject.Find ("SpawnerController").GetComponent<SpawnerController> ().SetNextOperation (21, value);
+			powerupSound.volume = Soundtrack.volume;
 			powerupSound.Play ();
 
 			StatisticsTracker.levelStats [6]++;
@@ -22,6 +23,7 @@ public class PowerupManager : MonoBehaviour {
 
 	public bool deleteOperation () {
 		if (StatisticsTracker.removeAvailableDeletePowerup ()) {
+			powerupSound.volume = Soundtrack.volume;
 			powerupSound.Play ();
 
 			StatisticsTracker.levelStats [5]++;

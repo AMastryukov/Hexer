@@ -25,6 +25,7 @@ public class SaveLoadData : MonoBehaviour {
 		data.randomizePowerups = StatisticsTracker.getRandomizePowerups ();
 		data.maxDeletePowerups = StatisticsTracker.getMaxDeletePowerups ();
 		data.overallStats = StatisticsTracker.overallStats;
+		data.levelUnlocks = StatisticsTracker.levelUnlocks;
 
 		// write to the file and close it
 		bf.Serialize (file, data);
@@ -46,6 +47,7 @@ public class SaveLoadData : MonoBehaviour {
 			StatisticsTracker.setRandomizePowerups (data.randomizePowerups);
 			StatisticsTracker.setMaxDeletePowerups (data.maxDeletePowerups);
 			StatisticsTracker.setOverallStats (data.overallStats);
+			StatisticsTracker.setLevelUnlocks (data.levelUnlocks);
 
 			return true;
 		} else {
@@ -66,5 +68,6 @@ public class SaveLoadData : MonoBehaviour {
 		public int randomizePowerups;
 		public int maxDeletePowerups;
 		public int[] overallStats = new int[9];
+		public bool[,] levelUnlocks = new bool[4,4];
 	}
 }

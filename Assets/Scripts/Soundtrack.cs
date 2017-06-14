@@ -30,6 +30,8 @@ public class Soundtrack : MonoBehaviour {
 			if (PlayerPrefs.HasKey ("soundVolume")) {
 				volume = PlayerPrefs.GetFloat ("soundVolume");
 				volumeSlider.value = volume;
+
+				UpdateVolume ();
 			} else {
 				PlayerPrefs.SetFloat ("soundVolume", 0.5f);
 			}

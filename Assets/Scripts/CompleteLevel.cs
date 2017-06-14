@@ -35,6 +35,7 @@ public class CompleteLevel : MonoBehaviour {
 		DisableOperations ();
 		DisableSpawners ();
 		DisableNumberShifter ();
+		DisableAbandonButton ();
 	}
 
 	void DisableMatcher() {
@@ -58,6 +59,11 @@ public class CompleteLevel : MonoBehaviour {
 	void DisableNumberShifter() {
 		numberShifter = GameObject.FindGameObjectWithTag ("NumberShifter");
 		Destroy (numberShifter.gameObject.GetComponent<NumberShifter> ());
+	}
+
+	void DisableAbandonButton() {
+		GameObject.Find ("Abandon").GetComponent<Text> ().text = "GAME OVER";
+		GameObject.Find ("Abandon").GetComponent<AbandonLevel> ().enabled = false;
 	}
 
 	void DropObjectsDown() {

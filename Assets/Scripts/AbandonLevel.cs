@@ -31,9 +31,9 @@ public class AbandonLevel : MonoBehaviour {
 		}
 
 		if (Input.GetMouseButton (0) && overButton) {
-			gameObject.GetComponent<Text> ().text = "(" + (Mathf.Round ((2 - Time.time + holdDelay) * 10f) / 10f) + ") ABANDON";
+			gameObject.GetComponent<Text> ().text = "(" + (Mathf.Round ((1 - Time.time + holdDelay) * 10f) / 10f) + ") ABANDON";
 
-			if ((Time.time - holdDelay > 2f) && overButton) {
+			if ((Time.time - holdDelay > 1f) && overButton) {
 				GameObject.Find ("SoundTrack").GetComponent<Soundtrack> ().StopMusic ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 
