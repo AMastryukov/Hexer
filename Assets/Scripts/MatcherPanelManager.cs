@@ -85,32 +85,32 @@ public class MatcherPanelManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (difficulty == 4) {
-			if (IsMatching(0,10) && IsMatching(1,11) && IsMatching(2,12) && IsMatching(3,13) && IsMatching(4,14) && 
-				IsMatching(5,15) && IsMatching(6,16) && IsMatching(7,17) && IsMatching(7,18) && IsMatching(7,19)) {
+			if (IsMatching(0,9) && IsMatching(1,10) && IsMatching(2,11) && IsMatching(3,12) && IsMatching(4,13) && 
+				IsMatching(5,14) && IsMatching(6,15) && IsMatching(7,16) && IsMatching(7,17) && IsMatching(7,18)) {
 				GameObject.Find("SoundTrack").GetComponent<Soundtrack>().StopMusic ();
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
 		}
 		else if (difficulty == 3) {
-			if (IsMatching(1,11) && IsMatching(2,12) && IsMatching(3,13) && IsMatching(4,14) && 
-				IsMatching(5,15) && IsMatching(6,16) && IsMatching(7,17) && IsMatching(7,18)) {
+			if (IsMatching(1,10) && IsMatching(2,11) && IsMatching(3,12) && IsMatching(4,13) && 
+				IsMatching(5,14) && IsMatching(6,15) && IsMatching(7,16) && IsMatching(7,17)) {
 				GameObject.Find("SoundTrack").GetComponent<Soundtrack>().StopMusic ();
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
 		}
 		else if (difficulty == 2) {
-			if (IsMatching(2,12) && IsMatching(3,13) && IsMatching(4,14) && 
-				IsMatching(5,15) && IsMatching(6,16) && IsMatching(7,17)) {
+			if (IsMatching(2,11) && IsMatching(3,12) && IsMatching(4,13) && 
+				IsMatching(5,14) && IsMatching(6,15) && IsMatching(7,16)) {
 				GameObject.Find("SoundTrack").GetComponent<Soundtrack>().StopMusic ();
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
 			}
 		}
 		else if (difficulty == 1) {
-			if (IsMatching(3,13) && IsMatching(4,14) && 
-				IsMatching(5,15) && IsMatching(6,16)) {
+			if (IsMatching(3,12) && IsMatching(4,13) && 
+				IsMatching(5,14) && IsMatching(6,15)) {
 				GameObject.Find("SoundTrack").GetComponent<Soundtrack>().StopMusic ();
 				solvedSound.Play ();
 				GameObject.FindGameObjectWithTag ("CompleteLevel").GetComponent<CompleteLevel> ().EndLevel ();
