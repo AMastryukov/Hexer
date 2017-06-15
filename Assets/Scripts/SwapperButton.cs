@@ -12,6 +12,7 @@ public class SwapperButton : MonoBehaviour {
 	void OnMouseOver() {
 		if (Input.GetMouseButtonDown(0)) {
 			GameObject.Find ("PowerupManager").GetComponent<PowerupManager> ().swapNumbers ();
+			Debug.Log ("PRESSED");
 		}
 	}
 	

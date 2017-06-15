@@ -8,6 +8,8 @@ public class PanelNumber : MonoBehaviour
 	public int assignedNumber;
 	public int panelIndex;
 
+	GameObject pauseGame;
+
 	void Awake()
 	{
 		symbolSprites = Resources.LoadAll<Sprite>("Sprites/symbols");
@@ -18,6 +20,7 @@ public class PanelNumber : MonoBehaviour
 	void Start () 
 	{
 		UpdateSprite ();
+		pauseGame = GameObject.Find ("PauseGame");
 	}
 
 	public void SetAssignedNumber(int number) {
@@ -26,7 +29,7 @@ public class PanelNumber : MonoBehaviour
 	}
 
 	void OnMouseOver() {
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0) && !pauseGame.GetComponent<PauseGame>().gamePaused) {
 			if (gameObject.tag == "PanelNumber") {
 				GameObject.Find("PowerupManager").GetComponent<PowerupManager>().createDuplicateAssignment (assignedNumber);
 			}

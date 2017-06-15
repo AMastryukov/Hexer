@@ -16,12 +16,16 @@ public class Operation : MonoBehaviour
 
 	private float stepDelaySeconds;
 
+	GameObject pauseGame;
+
 	void Awake()
 	{
 		symbolSprites = Resources.LoadAll<Sprite>("Sprites/symbols");
 
 		operatorObject = this.transform.GetChild (0).gameObject;
 		operandObject = this.transform.GetChild (1).gameObject;
+
+		pauseGame = GameObject.Find ("PauseGame");
 
 		operationSound.volume = Soundtrack.volume;
 
@@ -74,7 +78,7 @@ public class Operation : MonoBehaviour
 	}
 
 	void OnMouseOver() {
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0) && !pauseGame.GetComponent<PauseGame>().gamePaused) {
 			if (GameObject.Find("PowerupManager").GetComponent<PowerupManager>().deleteOperation ()) {
 				Destroy (gameObject);
 			}

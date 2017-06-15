@@ -13,6 +13,8 @@ public class NumberShifter : MonoBehaviour {
 	float leftKeyDelay;
 	float rightKeyDelay;
 
+	GameObject pauseGame;
+
 	void Awake() {
 		
 	}
@@ -21,6 +23,7 @@ public class NumberShifter : MonoBehaviour {
 	void Start () {
 		numberPanel = GameObject.FindGameObjectWithTag ("NumberPanel");
 		lastPanelIndex = numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers ().Length - 1;
+		pauseGame = GameObject.Find ("PauseGame");
 	}
 	
 	// Update is called once per frame
