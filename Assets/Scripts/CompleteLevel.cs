@@ -128,14 +128,14 @@ public class CompleteLevel : MonoBehaviour {
 
 	IEnumerator AnimateEndLevelStatsText(GameObject endLevelText, GameObject endLevelStats) {
 		int baseBits = 16;
-		int levelMuliplier = (2 * LevelDifficulty.difficulty) + 2;
-		int speedMultiplier = LevelDifficulty.speed;
+		int levelMuliplier = 3 * LevelDifficulty.difficulty - 1;
+		float speedMultiplier = 0.25f * LevelDifficulty.speed + 0.5f;
 		int operationBonus = (int)((StatisticsTracker.levelStats [0] +
 		                     StatisticsTracker.levelStats [1] +
 		                     StatisticsTracker.levelStats [2] +
 		                     StatisticsTracker.levelStats [3] +
 		                     StatisticsTracker.levelStats [4]) / 4);
-		int totalBits = baseBits * levelMuliplier * speedMultiplier + operationBonus;
+		int totalBits = (int)(baseBits * levelMuliplier * speedMultiplier) + operationBonus;
 
 		endLevelText.GetComponent<Text>().text = "";
 		endLevelStats.GetComponent<Text>().text = "";
@@ -222,7 +222,7 @@ public class CompleteLevel : MonoBehaviour {
 
 		yield return new WaitForSeconds (0.1f);
 		endLevelText.GetComponent<Text>().text += "|Speed multiplier:\n";
-		endLevelStats.GetComponent<Text>().text += "x" + speedMultiplier + "|\n";
+		endLevelStats.GetComponent<Text>().text += "x" + (Mathf.Round (speedMultiplier * 100f) / 100f) + "|\n";
 
 		yield return new WaitForSeconds (0.1f);
 		endLevelText.GetComponent<Text>().text += "|Operation bonus:\n";

@@ -35,6 +35,7 @@ public class DecalManager : MonoBehaviour {
 	}
 
 	public void UpdateLevelInfoText() {
+		levelInfoText = GameObject.Find ("LevelInfoText").GetComponent<Text> ();
 		levelInfoText.text = "";
 		levelInfoText.text += "[Access ";
 
@@ -80,11 +81,11 @@ public class DecalManager : MonoBehaviour {
 		statText.text += StatisticsTracker.getMaxDeletePowerups ();
 		statText.text += " deleters (" + StatisticsTracker.getDeletePowerupCost() + " bits) [+]\n";
 		statText.text += StatisticsTracker.getAssignmentPowerups ();
-		statText.text += " duplicators (64 bits) [+]\n";
+		statText.text += " duplicators (32 bits) [+]\n";
 		statText.text += StatisticsTracker.getSwapPowerups();
-		statText.text += " swappers (32 bits) [+]\n";
+		statText.text += " swappers (8 bits) [+]\n";
 		statText.text += StatisticsTracker.getRandomizePowerups ();
-		statText.text += " scramblers (16 bits) [+]\n";
+		statText.text += " scramblers (4 bits) [+]\n";
 	}
 	
 	// Update is called once per frame
