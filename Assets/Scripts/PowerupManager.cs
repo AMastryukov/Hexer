@@ -13,7 +13,8 @@ public class PowerupManager : MonoBehaviour {
 
 	public void createDuplicateAssignment(int value) {
 		if (StatisticsTracker.removeAssignmentPowerup ()) {
-			GameObject.Find ("SpawnerController").GetComponent<SpawnerController> ().SetNextOperation (21, value);
+			GameObject.Find ("SpawnerController").GetComponent<SpawnerController> ().operationQueue.Enqueue (new Vector2 (21, value));
+
 			powerupSound.volume = Soundtrack.volume;
 			powerupSound.Play ();
 
@@ -36,7 +37,7 @@ public class PowerupManager : MonoBehaviour {
 
 	public void swapNumbers() {
 		if (StatisticsTracker.removeSwapPowerup ()) {
-			GameObject.Find ("SpawnerController").GetComponent<SpawnerController> ().SetNextOperation (16, 17);
+			GameObject.Find ("SpawnerController").GetComponent<SpawnerController> ().operationQueue.Enqueue (new Vector2 (16, 17));
 			powerupSound.Play ();
 
 			StatisticsTracker.levelStats [7]++;
@@ -45,7 +46,7 @@ public class PowerupManager : MonoBehaviour {
 
 	public void scrambleNumbers() {
 		if (StatisticsTracker.removeRandomizePowerup ()) {
-			GameObject.Find ("SpawnerController").GetComponent<SpawnerController> ().SetNextOperation (21, 28);
+			GameObject.Find ("SpawnerController").GetComponent<SpawnerController> ().operationQueue.Enqueue (new Vector2 (21, 28));
 			powerupSound.Play ();
 
 			StatisticsTracker.levelStats [8]++;

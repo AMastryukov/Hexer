@@ -130,7 +130,12 @@ public class CompleteLevel : MonoBehaviour {
 		int baseBits = 16;
 		int levelMuliplier = (2 * LevelDifficulty.difficulty) + 2;
 		int speedMultiplier = LevelDifficulty.speed;
-		int totalBits = baseBits * levelMuliplier * speedMultiplier;
+		int operationBonus = (int)((StatisticsTracker.levelStats [0] +
+		                     StatisticsTracker.levelStats [1] +
+		                     StatisticsTracker.levelStats [2] +
+		                     StatisticsTracker.levelStats [3] +
+		                     StatisticsTracker.levelStats [4]) / 4);
+		int totalBits = baseBits * levelMuliplier * speedMultiplier + operationBonus;
 
 		endLevelText.GetComponent<Text>().text = "";
 		endLevelStats.GetComponent<Text>().text = "";
@@ -220,11 +225,20 @@ public class CompleteLevel : MonoBehaviour {
 		endLevelStats.GetComponent<Text>().text += "x" + speedMultiplier + "|\n";
 
 		yield return new WaitForSeconds (0.1f);
+		endLevelText.GetComponent<Text>().text += "|Operation bonus:\n";
+		endLevelStats.GetComponent<Text>().text += "+" + 
+			(int)((StatisticsTracker.levelStats [0] + 
+			StatisticsTracker.levelStats [1] + 
+			StatisticsTracker.levelStats [2] + 
+			StatisticsTracker.levelStats [3] + 
+				StatisticsTracker.levelStats [4]) / 4) + "|\n";
+
+		yield return new WaitForSeconds (0.1f);
 		endLevelText.GetComponent<Text>().text += "-----------------------------------------------------\n";
 		endLevelStats.GetComponent<Text>().text += "\n";
 
 		yield return new WaitForSeconds (0.1f);
-		endLevelText.GetComponent<Text>().text += "|Total bits recovered:\n";
+		endLevelText.GetComponent<Text>().text += "|Total bits earned:\n";
 		endLevelStats.GetComponent<Text>().text += totalBits + "|\n";
 
 		yield return new WaitForSeconds (0.1f);

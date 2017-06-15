@@ -21,8 +21,6 @@ public class NumberShifter : MonoBehaviour {
 	void Start () {
 		numberPanel = GameObject.FindGameObjectWithTag ("NumberPanel");
 		lastPanelIndex = numberPanel.GetComponent<NumberPanelManager> ().getPanelNumbers ().Length - 1;
-
-		sound.volume = Soundtrack.volume;
 	}
 	
 	// Update is called once per frame
@@ -50,6 +48,8 @@ public class NumberShifter : MonoBehaviour {
 				ShiftNumbersRight ();
 			}
 		}
+
+		sound.volume = Soundtrack.volume;
 	}
 
 
